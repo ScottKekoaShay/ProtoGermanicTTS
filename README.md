@@ -11,25 +11,17 @@ It was built for the audio layer of *Wurdahuzdą: Proto-Germanic dictionary*
 (Scott K. Shay, 2026 https://protogermanic.org), where it supplies a spoken pronunciation
 for each of ~5,300 headwords.
 
-**What it is not:** a claim about how Proto-Germanic actually sounded. It
-renders *one* set of reconstruction conventions -- this project's -- fairly faithfully
-and consistently. Where the reconstruction is contested, the audio simply
-follows the transcription it was given.
-
 ---
 
 ## What's here
 
 | file | size | notes |
 |---|---|---|
-| `pgmc.onnx` | ~64 MB | the voice, Piper "medium" quality, 22.05 kHz |
-| `pgmc.onnx.json` | ~5 KB | phoneme map, audio config, inference defaults |
+| [pgmc.onnx](https://github.com/ScottKekoaShay/ProtoGermanicTTS/releases/download/v1.0/pgmc.onnx) | ~64 MB | the voice, Piper "medium" quality, 22.05 kHz |
+| [pgmc.onnx.json](https://github.com/ScottKekoaShay/ProtoGermanicTTS/releases/download/v1.0/pgmc.onnx.json) | ~5 KB | phoneme map, audio config, inference defaults |
+| [epoch.7219-step.1798080.ckpt](https://github.com/ScottKekoaShay/ProtoGermanicTTS/releases/download/v1.0/epoch.7219-step.1798080.ckpt) | ~826 MB | checkpoint to refine the model further (not needed to run this) |
 | `pgmc_tts.py` | small | minimal inference example (ONNX Runtime + numpy) |
 | `normalize.py` | small | **IPA → model input. Required.** See below. |
-
-The training checkpoint (~826 MB, for resuming training) is attached to the
-[latest release](../../releases/latest) rather than committed, since GitHub
-blocks files over 100 MB in Git history.
 
 ---
 
@@ -56,6 +48,9 @@ that uses eSpeak's conventions:
 | `ˈɑi̯.nɑz` | `ˈɑinɑz` | **U+032F (non-syllabic) is stripped**. It has an id in the map but was never in training, so its embedding is untrained -- this one inserts whole spurious syllables. |
 | `ˈɑ.xʷɔː` | `ˈɑxwɔː` | **ʷ → w**. Labiovelars are two segments. |
 | `ĩ` `ũ` | `i`+U+0303 | **nasal vowels are decomposed** to base + combining tilde (U+0303, id 141). The precomposed forms have no id. |
+
+Normalization occurs transparently with the attached pgmc_tts.py script,
+but you cannot skip it if you modify the process.
 
 Phoneme ids follow Piper's convention: `BOS, PAD, p, PAD, p, PAD, …, EOS`.
 The `PAD` immediately after `BOS` matters -- omitting it shifts every token by
