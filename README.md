@@ -1,4 +1,3 @@
-# ProtoGermanicTTS
 # Proto-Germanic TTS: a Piper voice for reconstructed Proto-Germanic
 
 A neural text-to-speech voice that speaks Proto-Germanic from IPA.
