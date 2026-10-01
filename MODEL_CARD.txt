@@ -1,0 +1,14 @@
+# Model card for proto-germanic-tts (medium)
+
+* Language: gem-pro (Proto-Germanic)
+* Speakers: 1
+* Quality: medium
+* Samplerate: 22,050Hz
+
+## Dataset
+
+* License: MIT
+
+## Training
+
+Finetuned from Castilian Spanish davefx voice (medium quality).
