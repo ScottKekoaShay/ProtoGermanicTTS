@@ -5,7 +5,7 @@
 * Quality: medium
 * Samplerate: 22,050Hz
 
-## Dataset
+## License
 
 * License: MIT
 
